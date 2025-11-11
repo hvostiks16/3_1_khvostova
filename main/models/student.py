@@ -28,7 +28,7 @@ class Student(models.Model):
     building = models.CharField(db_column="Building", max_length=45)
     apartment = models.CharField(db_column="Apartment", max_length=45)
 
-    id_form = models.ForeignKey(Form, db_column='idClass', on_delete=models.SET_NULL, null=True)
+    id_form = models.ForeignKey(Form, db_column='idClass', on_delete=models.SET_NULL, null=True, related_name='students')
     idStudent = models.AutoField(primary_key=True, db_column='idStudent')
 
     parents = models.ManyToManyField(
