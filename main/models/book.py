@@ -12,6 +12,7 @@ class Book(models.Model):
     author = models.CharField(db_column='Author', max_length=50)
     date_of_publication = models.DateField(db_column='DateOfPublication', max_length=10)
     date_of_borrowing = models.DateField(db_column='DateOfBorrowing', max_length=10)
+    date_of_borrowing = models.DateField(db_column='DateOfBorrowing', max_length=10)
     status = models.CharField(
         db_column='Status',
         max_length=10,
@@ -19,5 +20,10 @@ class Book(models.Model):
         default=BookStatus.AVAILABLE)
     idBook = models.AutoField(primary_key=True, db_column='idBook')
 
+    students = models.ManyToManyField(
+        'Student',
+        through='BookHasStudent',
+        related_name='books'
+    )
     class Meta:
         db_table = 'Book'

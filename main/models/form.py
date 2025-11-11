@@ -5,7 +5,7 @@ from .parent import Parent
 class Form(models.Model):
     name = models.CharField(db_column='Name', max_length=45)
 
-    id_teacher = models.ForeignKey(Teacher, db_column='idStudent', on_delete=models.SET_NULL, null=True)
+    id_teacher = models.ForeignKey(Teacher, db_column='idTeacher', on_delete=models.SET_NULL, null=True)
     id_parent = models.ForeignKey(Parent, db_column='idParent', on_delete=models.SET_NULL, null=True)
     idClass = models.AutoField(primary_key=True, db_column='idClass')
 

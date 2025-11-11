@@ -1,6 +1,7 @@
 from .attendance import Attendance
 from .book import Book
 from .book_has_student import BookHasStudent
+from .student_has_parent import StudentHasParent
 from .classroom import Classroom
 from .form import Form
 from .parent import Parent

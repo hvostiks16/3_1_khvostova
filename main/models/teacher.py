@@ -6,6 +6,7 @@ class Teacher(models.Model):
     patronymic = models.CharField(db_column='Patronymic', max_length=50)
     phone_number = models.CharField(db_column='PhoneNumber', max_length=50)
     email = models.CharField(db_column='Email', max_length=50)
+    idTeacher = models.AutoField(primary_key=True, db_column='idTeacher')
 
     class Meta:
         db_table = 'Teacher'

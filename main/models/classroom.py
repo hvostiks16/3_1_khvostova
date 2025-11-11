@@ -24,7 +24,8 @@ class Classroom(models.Model):
     capacity = models.PositiveIntegerField(db_column='Capacity')
     equipment = models.CharField(db_column='Equipment', max_length=45)
 
-    id_teacher = models.ForeignKey(Teacher, db_column='Teacher', on_delete=models.SET_NULL, null=True)
+    idClassroom = models.IntegerField(primary_key=True, db_column='idClassRoom')
+    id_teacher = models.ForeignKey(Teacher, db_column='idTeacher', on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'Classroom'

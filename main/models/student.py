@@ -31,5 +31,11 @@ class Student(models.Model):
     id_form = models.ForeignKey(Form, db_column='idClass', on_delete=models.SET_NULL, null=True)
     idStudent = models.AutoField(primary_key=True, db_column='idStudent')
 
+    parents = models.ManyToManyField(
+        'Parent',
+        through='StudentHasParent',
+        related_name='children'
+    )
+
     class Meta:
         db_table = 'Student'

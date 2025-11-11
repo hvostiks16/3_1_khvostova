@@ -1,3 +1,5 @@
+from typing import Any, Dict, Optional
+
 class BaseRepository:
     def __init__(self, model):
         self._model = model
@@ -9,16 +11,21 @@ class BaseRepository:
         pk_field = self._model._meta.pk.name
         return self._model.objects.get(**{pk_field: obj_id})
 
-    def add(self, data):
-        try:
-            if self._model.objects.filter(**data).exists():
-                print(f"Запис уже існує: {data}")
-                return None
-            return self._model.objects.create(**data)
-        except Exception as e:
-            print(f"Помилка при додаванні: {e}")
-            return None
+    def create(self, data: Dict[str, Any]) -> Any:
+        return self._model.objects.create(**data)
 
-    @staticmethod
-    def description():
-        return "Базовий репозиторій для доступу до сутностей БД"
+    def update(self, pk, **kwargs) -> Optional[Any]:
+        obj = self.get_by_id(pk)
+        if not obj:
+            return None
+        for k, v in kwargs.items():
+            setattr(obj, k, v)
+        obj.save()
+        return obj
+
+    def delete(self, pk) -> bool:
+        obj = self.get_by_id(pk)
+        if not obj:
+            return False
+        obj.delete()
+        return True

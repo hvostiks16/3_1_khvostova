@@ -15,8 +15,8 @@ def test_parent(uow):
     new_parent = uow.parents.add({
         'name': 'Лілія',
         'surname': 'Сорока',
-        'patronymic': 'Олєгівна',
-        'phone_number': '0952525252',
+        'patronymic': 'Володимирівна',
+        'phone_number': '0952525290',
         'email': 'semsor52@example.com'
     })
     if new_parent:

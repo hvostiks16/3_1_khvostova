@@ -22,9 +22,9 @@ class Schedule(models.Model):
     time = models.TimeField(db_column="Time")
     subject = models.CharField(db_column="Subject", max_length=100)
 
-    id_classroom = models.ForeignKey(Classroom, db_column='classroom', on_delete=models.SET_NULL, null=True)
-    id_teacher = models.ForeignKey(Teacher, db_column='teacher', on_delete=models.SET_NULL, null=True)
-    id_form = models.ForeignKey(Form, db_column='form', on_delete=models.SET_NULL, null=True)
+    id_classroom = models.ForeignKey(Classroom, db_column='idClassroom', on_delete=models.SET_NULL, null=True)
+    id_teacher = models.ForeignKey(Teacher, db_column='idTeacher', on_delete=models.SET_NULL, null=True)
+    id_form = models.ForeignKey(Form, db_column='idForm', on_delete=models.SET_NULL, null=True)
 
     class Meta:
         db_table = 'Schedule'
