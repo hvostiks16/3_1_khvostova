@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ parent.surname }} {{ parent.name }} {{ parent.patronymic }}</h1>
+<p>Email: {{ parent.email }}</p>
+<p>Phone: {{ parent.phone_number }}</p>
+<a href="{% url 'parent_update' parent.pk %}">Edit</a>
+<form method="post" action="{% url 'parent_delete' parent.pk %}">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+</form>
+<a href="{% url 'parent_list' %}">Back to list</a>
+
+</body>
+</html>

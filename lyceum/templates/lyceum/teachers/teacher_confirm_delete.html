@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Delete Teacher</title>
+</head>
+<body>
+    <h1>Delete {{ teacher.surname }} {{ teacher.name }} {{ teacher.patronymic }}?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm</button>
+    </form>
+    <a href="{% url 'teacher_detail' teacher.pk %}">Cancel</a>
+</body>
+</html>

@@ -7,5 +7,9 @@ class Parent(models.Model):
     phone_number = models.CharField(db_column="PhoneNumber", max_length=10)
     email = models.CharField(db_column="Email", max_length=50)
     idParent = models.AutoField(primary_key=True, db_column='idParent')
+
+    def __str__(self):
+        return f"{self.surname} {self.name} {self.patronymic}"
+
     class Meta:
         db_table = 'Parent'

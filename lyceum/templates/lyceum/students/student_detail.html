@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student details</title>
+</head>
+<body>
+    <h1>{{ student.surname }} {{ student.name }} {{ student.patronymic }}</h1>
+    <p>Email: {{ student.email }}</p>
+    <p>Phone: {{ student.phone_number }}</p>
+    <p>Privilege: {{ student.get_privilege_display }}</p>
+    <p>Date of Birth: {{ student.date_of_birth }}</p>
+    <a href="{% url 'student_update' student.pk %}">Edit</a>
+    <form method="post" action="{% url 'student_delete' student.pk %}">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'student_list' %}">Back to list</a>
+
+</body>
+</html>

@@ -9,5 +9,8 @@ class Form(models.Model):
     id_parent = models.ForeignKey(Parent, db_column='idParent', on_delete=models.SET_NULL, null=True)
     idClass = models.AutoField(primary_key=True, db_column='idClass')
 
+    def __str__(self):
+        return f"{self.name}"
+
     class Meta:
         db_table = 'Class'
