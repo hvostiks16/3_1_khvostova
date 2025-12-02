@@ -8,12 +8,10 @@
 <h1>{{ parent.surname }} {{ parent.name }} {{ parent.patronymic }}</h1>
 <p>Email: {{ parent.email }}</p>
 <p>Phone: {{ parent.phone_number }}</p>
-<a href="{% url 'parent_update' parent.pk %}">Edit</a>
-<form method="post" action="{% url 'parent_delete' parent.pk %}">
-  {% csrf_token %}
-  <button type="submit">Delete</button>
-</form>
-<a href="{% url 'parent_list' %}">Back to list</a>
+<p>________________________</p>
+<p><a href="{% url 'parent_update' parent.pk %}">Edit</a></p>
+<p><a href="{% url 'parent_delete' parent.pk %}">Delete</a></p>
+<p><a href="{% url 'parent_list' %}">Back to list</a></p>
 
 </body>
 </html>

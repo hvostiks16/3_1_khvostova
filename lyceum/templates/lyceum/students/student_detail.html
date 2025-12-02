@@ -10,12 +10,11 @@
     <p>Phone: {{ student.phone_number }}</p>
     <p>Privilege: {{ student.get_privilege_display }}</p>
     <p>Date of Birth: {{ student.date_of_birth }}</p>
-    <a href="{% url 'student_update' student.pk %}">Edit</a>
-    <form method="post" action="{% url 'student_delete' student.pk %}">
-      {% csrf_token %}
-      <button type="submit">Delete</button>
-    </form>
-    <a href="{% url 'student_list' %}">Back to list</a>
+    <p>Form: {{ student.id_form.name }}</p>
+    <p>________________________</p>
+    <p><a href="{% url 'student_update' student.pk %}">Edit</a></p>
+    <p><a href="{% url 'student_delete' student.pk %}">Delete</a></p>
+    <p><a href="{% url 'student_list' %}">Back to list</a></p>
 
 </body>
 </html>
