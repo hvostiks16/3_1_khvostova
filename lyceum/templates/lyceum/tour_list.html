@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список турів</title>
+</head>
+<body>
+<h2>Список турів</h2>
+<ul>
+  {% for tour in tours %}
+    <li>
+      <strong>{{ tour.title }}</strong> — {{ tour.price }} грн<br>
+      Гід: {{ tour.gid.first_name }} {{ tour.gid.second_name }} ({{ tour.gid.age }})<br>
+      Категорія: {{ tour.category.label }}
+      <form method="post" action="{% url 'tour_list' %}" style="display:inline;">
+          {% csrf_token %}
+          <input type="hidden" name="tour_id" value="{{ tour.id }}">
+          <button type="submit">Видалити</button>
+      </form>
+
+
+    </li>
+  {% endfor %}
+</ul>
+</body>
+</html>

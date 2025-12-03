@@ -1,6 +1,31 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Teacher, Student, Parent
 from .forms import TeacherForm, StudentForm, ParentForm
+from main.repositories.NetWorkHelper import NetworkHelper
+
+def gid_list(request):
+    if request.method == "POST":
+        gid_id = request.POST.get("gid_id")
+        if gid_id:
+            try:
+                ok = NetworkHelper.delete_item("gids", int(gid_id))
+                print("DELETE response:", ok)
+            except Exception as e:
+                print("Помилка при видаленні:", e)
+    gids = NetworkHelper.get_list("gids")
+    return render(request, "lyceum/gid_list.html", {"gids": gids})
+
+def tour_list(request):
+    if request.method == "POST":
+        tour_id = request.POST.get("tour_id")
+        if tour_id:
+            try:
+                NetworkHelper.delete_item("tours", int(tour_id))  # DELETE /api/tours/<id>/
+            except Exception as e:
+                print("Помилка при видаленні:", e)
+        return redirect("tour_list")
+    tours = NetworkHelper.get_list("tours")
+    return render(request, "lyceum/tour_list.html", {"tours": tours})
 
 def teacher_list(request):
     teachers = Teacher.objects.all()

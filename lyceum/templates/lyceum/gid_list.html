@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список гідів</title>
+</head>
+<body>
+<h2>Список гідів</h2>
+<ul>
+  {% for gid in gids %}
+    <li>
+      {{ gid.first_name }} {{ gid.second_name }} ({{ gid.age }})
+      <form method="post" action="{% url 'gid_list' %}" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="gid_id" value="{{ gid.id }}">
+        <button type="submit">Видалити</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>
