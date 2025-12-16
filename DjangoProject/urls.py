@@ -20,5 +20,5 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/reports/students_per_class/', StudentsPerClassReportView.as_view(), name='students-per-class-report'),
     path('api/reports/available_books/', AvailableBooksView.as_view(), name='available-books'),
-    path('lyceum/', include('lyceum.urls')),
+    path('', include('lyceum.urls')),
 ]

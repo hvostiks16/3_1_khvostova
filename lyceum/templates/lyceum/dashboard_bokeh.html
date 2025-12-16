@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <title>Даш-борд аналітика (Bokeh)</title>
+    <script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.8.1.min.js"></script>
+</head>
+<body>
+    <h1>Даш-борд аналітика (Bokeh)</h1>
+
+    {% for name, comp in figs.items %}
+        {{ comp.0|safe }}   <!-- script -->
+        {{ comp.1|safe }}   <!-- div -->
+    {% endfor %}
+</body>
+</html>

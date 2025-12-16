@@ -1,7 +1,39 @@
 from django.urls import path
 from . import views
+from lyceum.dashboard.views import dashboard, dashboard_bokeh
+from lyceum.api_views import (
+    FormsStudentsCountAPI,
+    BooksPerFormAPI,
+    ParentChildrenByPrivilegeAPI,
+    RiskyStudentsAttendanceAPI,
+    PrivilegedStudentsPerFormAPI,
+    BooksPerStudentAPI,
+    StudentAgeStatsAPI,
+    ClassroomCapacityStatsAPI,
+    AverageAgePerFormAPI,
+    AverageAgeByPrivilegeAPI,
+    MaxBooksPerStudentPerFormAPI,
+    RiskyStudentsPerDayAPI,
+)
 
 urlpatterns = [
+    path('dashboard/', dashboard, name='dashboard'),
+    path('dashboard_bokeh/', dashboard_bokeh, name='dashboard_bokeh'),
+
+    path('analytics/forms-students-count/', FormsStudentsCountAPI.as_view(), name='analytics_forms_students_count'),
+    path('analytics/books-per-form/', BooksPerFormAPI.as_view(), name='books-per-form'),
+    path('analytics/parents-children-by-privilege/', ParentChildrenByPrivilegeAPI.as_view(), name='analytics_parents_children_by_privilege'),
+    path('analytics/risky-students-attendance/', RiskyStudentsAttendanceAPI.as_view(), name='analytics_risky_students_attendance'),
+    path('analytics/privileged-students-per-form/', PrivilegedStudentsPerFormAPI.as_view(), name='analytics_privileged_students_per_form'),
+    path('analytics/books-per-student/', BooksPerStudentAPI.as_view(), name='analytics_books_per_student'),
+    path('analytics/risky-students-per-day/', RiskyStudentsPerDayAPI.as_view(), name='risky_students_per_day_api'),
+
+    path('statistics/student-age/', StudentAgeStatsAPI.as_view(), name='student-age-stats'),
+    path('statistics/classroom-capacity/', ClassroomCapacityStatsAPI.as_view(), name='classroom-capacity-stats'),
+    path('statistics/average-age-per-form/', AverageAgePerFormAPI.as_view(), name='average-age-per-form'),
+    path('statistics/average-age-by-privilege/', AverageAgeByPrivilegeAPI.as_view(), name='average-age-by-privilege'),
+    path('statistics/max-books-per-student-per-form/', MaxBooksPerStudentPerFormAPI.as_view(), name='max-books-per-student-per-form'),
+
     path("gids/", views.gid_list, name="gid_list"),
     path("tours/", views.tour_list, name="tour_list"),
     #TEACHER

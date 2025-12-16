@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <title>Даш-борд аналітика (Plotly)</title>
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <style>
+      .chart { width: 100%; max-width: 900px; margin: 24px auto; }
+    </style>
+</head>
+<body>
+    <h1>Даш-борд аналітика (Plotly)</h1>
+
+    <div id="plotly-students_by_form" class="chart"></div>
+    <div id="plotly-books_per_form" class="chart"></div>
+    <div id="plotly-risky_students" class="chart"></div>
+    <div id="plotly-privileged_children" class="chart"></div>
+    <div id="plotly-privileged_students" class="chart"></div>
+    <div id="plotly-books_per_student" class="chart"></div>
+    <div id="plotly-risky_students_per_day_line" class="chart"></div>
+
+    <script>
+      const FIGS = {{ figs_json|safe }};
+      for (const [name, spec] of Object.entries(FIGS)) {
+        const elId = 'plotly-' + name;
+        const el = document.getElementById(elId);
+        if (!el) continue;
+        Plotly.newPlot(el, spec.data || [], spec.layout || {}, {responsive: true});
+      }
+    </script>
+</body>
+</html>
