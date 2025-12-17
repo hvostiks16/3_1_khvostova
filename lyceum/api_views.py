@@ -56,29 +56,26 @@ class RiskyStudentsPerDayAPI(APIView):
 
         return Response(df.to_dict(orient='records'))
 
+
 class StudentAgeStatsAPI(APIView):
     def get(self, request):
         stats = StatisticsRepository.student_age_stats()
         return Response(stats)
-
 
 class ClassroomCapacityStatsAPI(APIView):
     def get(self, request):
         stats = StatisticsRepository.classroom_capacity_stats()
         return Response(stats)
 
-
 class AverageAgePerFormAPI(APIView):
     def get(self, request):
         qs = StatisticsRepository.average_age_per_form()
         return Response(qs)
 
-
 class AverageAgeByPrivilegeAPI(APIView):
     def get(self, request):
         qs = StatisticsRepository.average_age_by_privilege()
         return Response(qs)
-
 
 class MaxBooksPerStudentPerFormAPI(APIView):
     def get(self, request):
