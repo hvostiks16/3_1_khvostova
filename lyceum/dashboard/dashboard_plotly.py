@@ -63,30 +63,39 @@ def dashboard_plotly_components(filters=None):
         )
         return fig.to_dict()
 
-
-    # 1. Студенти по класах
+    # 1. Студенти по класах (з сортуванням)
     df = data['students_count_by_form'].copy()
     if not df.empty and {'name', 'student_count'}.issubset(df.columns):
         df['name'] = df['name'].astype(str)
         df['student_count'] = pd.to_numeric(df['student_count'], errors='coerce').fillna(0)
         df = df.groupby('name', as_index=False)['student_count'].sum()
+
+        # сортування
+        sort_order = (filters or {}).get('students_sort', 'asc')
+        df = df.sort_values(by='student_count', ascending=(sort_order == 'asc'))
+
         figs['students_by_form'] = bar_chart(
             x=df['name'], y=df['student_count'],
             title='Кількість студентів по класах',
             x_label='Клас', y_label='Студентів'
         )
 
-    # 2. Книги по класах (Pie)
+    # 2. Книги по класах (з фільтрацією)
     df = data['books_per_form'].copy()
     if not df.empty and {'name', 'books_count'}.issubset(df.columns):
         df['name'] = df['name'].astype(str)
         df['books_count'] = pd.to_numeric(df['books_count'], errors='coerce').fillna(0)
         df = df.groupby('name', as_index=False)['books_count'].sum()
+
+        # фільтрація
+        filter_class = (filters or {}).get('books_filter')
+        if filter_class:
+            df = df[df['name'] == filter_class]
+
         figs['books_per_form'] = pie_chart(
             labels=df['name'], values=df['books_count'],
             title='Кількість книг по класах'
         )
-
     # 3. Ризикові студенти
     df = data['risky_students_attendance'].copy()
     if not df.empty and {'surname', 'missed_lessons'}.issubset(df.columns):
@@ -148,4 +157,3 @@ def dashboard_plotly_components(filters=None):
         )
 
     return figs
-

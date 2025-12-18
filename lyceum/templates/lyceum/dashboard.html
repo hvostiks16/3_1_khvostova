@@ -6,10 +6,27 @@
     <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
     <style>
       .chart { width: 100%; max-width: 900px; margin: 24px auto; }
+      form { margin: 20px auto; max-width: 900px; }
     </style>
 </head>
 <body>
     <h1>Даш-борд аналітика (Plotly)</h1>
+
+    <!-- Форма для сортування та фільтрації -->
+    <form method="get">
+        <label>Сортування студентів:
+            <select name="students_sort">
+                <option value="asc" {% if filters.students_sort == "asc" %}selected{% endif %}>Зростання</option>
+                <option value="desc" {% if filters.students_sort == "desc" %}selected{% endif %}>Спадання</option>
+            </select>
+        </label>
+
+        <label>Фільтр книг по класу:
+            <input type="text" name="books_filter" value="{{ filters.books_filter|default:'' }}">
+        </label>
+
+        <button type="submit">Застосувати</button>
+    </form>
 
     <div id="plotly-students_by_form" class="chart"></div>
     <div id="plotly-books_per_form" class="chart"></div>

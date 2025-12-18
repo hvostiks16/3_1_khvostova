@@ -7,9 +7,22 @@
 <body>
     <h1>Даш-борд аналітика (Bokeh)</h1>
 
+    <form method="get" action="">
+        <label for="students_sort">Сортування студентів:</label>
+        <select name="students_sort" id="students_sort">
+            <option value="">-- без сортування --</option>
+            <option value="asc" {% if filters.students_sort == 'asc' %}selected{% endif %}>За зростанням</option>
+            <option value="desc" {% if filters.students_sort == 'desc' %}selected{% endif %}>За спаданням</option>
+        </select>
+
+        <button type="submit">Застосувати</button>
+    </form>
+
+    <hr>
+
     {% for name, comp in figs.items %}
-        {{ comp.0|safe }}   <!-- script -->
-        {{ comp.1|safe }}   <!-- div -->
+        {{ comp.0|safe }} <!-- script -->
+        {{ comp.1|safe }} <!-- div -->
     {% endfor %}
 </body>
 </html>
