@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Parallel DB Performance Test</title>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Parallel DB Performance Dashboard (Books)</h2>
+
+    <form method="get" class="form-inline mb-4">
+        <label class="mr-3">Execution Mode:</label>
+        <select name="mode" class="form-control mr-3">
+            <option value="thread" {% if current_mode == "thread" %}selected{% endif %}>ThreadPoolExecutor</option>
+            <option value="process" {% if current_mode == "process" %}selected{% endif %}>ProcessPoolExecutor</option>
+        </select>
+
+        <label for="workers" class="mr-2">Workers (comma-separated):</label>
+        <input type="text" name="workers" id="workers" class="form-control mr-3"
+               value="{{ current_workers }}">
+
+        <button type="submit" class="btn btn-primary">Run test</button>
+    </form>
+
+    <hr>
+
+    <h3>Execution Time</h3>
+    <div class="mb-5">
+        {{ graph_total|safe }}
+    </div>
+
+    <h3>Average Query Duration</h3>
+    <div class="mb-5">
+        {{ graph_avg|safe }}
+    </div>
+
+    <h3 class="mt-5">Metrics DataFrame</h3>
+    <div class="table-responsive">
+        {{ df|safe }}
+    </div>
+</div>
+
+</body>
+</html>

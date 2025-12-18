@@ -15,8 +15,10 @@ from lyceum.api_views import (
     MaxBooksPerStudentPerFormAPI,
     RiskyStudentsPerDayAPI,
 )
+from lyceum.parallel.views import parallel_dashboard
 
 urlpatterns = [
+    path("parallel/", parallel_dashboard, name="parallel"),
     path('dashboard/', dashboard, name='dashboard'),
     path('dashboard_bokeh/', dashboard_bokeh, name='dashboard_bokeh'),
 
