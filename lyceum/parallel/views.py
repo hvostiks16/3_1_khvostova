@@ -23,7 +23,7 @@ def run_parallel_tests(workers_list=None, total_queries=100, mode="thread"):
         workers_list = [1, 2, 4, 8, 16]
 
     for workers in workers_list:
-        max_workers = min(workers, total_queries, 10)
+        max_workers = min(workers, total_queries)
         start_total = time.perf_counter()
         durations = []
 

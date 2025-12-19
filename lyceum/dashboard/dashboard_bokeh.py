@@ -50,7 +50,6 @@ def dashboard_bokeh_components(filters=None):
         p.grid.visible = False
     components_dict['books_per_form'] = components(p)
 
-    # решта графіків без змін
     df = data['risky_students_attendance']
     if df.empty:
         p = figure(title="Немає даних", height=300)

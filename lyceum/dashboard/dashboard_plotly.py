@@ -80,7 +80,7 @@ def dashboard_plotly_components(filters=None):
             x_label='Клас', y_label='Студентів'
         )
 
-    # 2. Книги по класах (з фільтрацією)
+    # 2. Книги по класах
     df = data['books_per_form'].copy()
     if not df.empty and {'name', 'books_count'}.issubset(df.columns):
         df['name'] = df['name'].astype(str)
